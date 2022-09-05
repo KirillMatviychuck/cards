@@ -2,13 +2,12 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {authAPI} from "../../api/api";
 
 export const emailRecover = createAsyncThunk('forgot/emailRecover',
-    async (arg: { email: string, from: string, message: string }, { rejectWithValue }) => {
+    async (arg: { email: string }, {rejectWithValue}) => {
         try {
-            const response = await authAPI.forgotPassword(arg.email, arg.from, arg.message)
-            debugger
+            await authAPI.forgotPassword(arg.email)
+            return {email: arg.email}
         } catch (error) {
-            debugger
-            rejectWithValue({ error: 'some error' })
+            return rejectWithValue({error: 'some error'})
         }
     })
 
@@ -21,13 +20,13 @@ const forgotSlice = createSlice({
     initialState: {
         adminName: 'test-front-admin <ai73a@yandex.by>',
         textForUser: mailText,
-        isMailSent: null
+        recoveredMail: null
     } as InitialState,
     reducers: {},
     extraReducers: builder => {
         builder
             .addCase(emailRecover.fulfilled, (state, action) => {
-                state.isMailSent = true
+                state.recoveredMail = action.payload.email
             })
     }
 })
@@ -37,5 +36,5 @@ export const forgotReducer = forgotSlice.reducer
 type InitialState = {
     adminName: string
     textForUser: string
-    isMailSent: null | boolean
+    recoveredMail: null | string
 }

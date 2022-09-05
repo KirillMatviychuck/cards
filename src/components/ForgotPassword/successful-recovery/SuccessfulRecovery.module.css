@@ -1,0 +1,24 @@
+.mainWrap {
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #dedede;
+}
+
+.title {
+
+}
+
+.mailPic {
+    height: 120px;
+    border-radius: 60px;
+}
+
+.explanatoryText {
+    text-align: center;
+    color: #727883;
+}
+

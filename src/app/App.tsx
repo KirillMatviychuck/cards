@@ -10,6 +10,7 @@ import SignUp from "../components/SignUp/SignUp";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import { initializeCheck } from "./app-reducer";
 import CustomizedSnackbars from '../common/CustomizedSnackbar/CustomizedSnackbar';
+import SuccessfulRecovery from "../components/ForgotPassword/successful-recovery/SuccessfulRecovery";
 
 export enum PATH {
     LOGIN = '/login',
@@ -17,7 +18,8 @@ export enum PATH {
     PACKS = '/packs',
     CARDS = '/cars',
     FORGOT = '/forgot-password',
-    REGISTRATION = '/signup'
+    REGISTRATION = '/signup',
+    SUCCESSFUL_RECOVERY = '/successful-recovery'
 }
 
 const App: React.FC = () => {
@@ -41,6 +43,7 @@ const App: React.FC = () => {
                 <Route path={PATH.CARDS} element={<Cards />} />
                 <Route path={PATH.FORGOT} element={<ForgotPassword />} />
                 <Route path={PATH.REGISTRATION} element={<SignUp />} />
+                <Route path={PATH.SUCCESSFUL_RECOVERY} element={<SuccessfulRecovery />} />
             </Routes>
             <CustomizedSnackbars />
         </div>

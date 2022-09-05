@@ -1,4 +1,5 @@
 import axios from "axios"
+import {EMAIL_TEMPLATE} from "../components/ForgotPassword/recoverMessage";
 
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
@@ -17,8 +18,8 @@ export const authAPI = {
         return instance.post<LoginResponse>('auth/me')
             .then(res => res.data)
     },
-    forgotPassword(email: string, from: string, message: string) {
-        return instance.post('auth/forgot', { email, from, message })
+    forgotPassword(email: string) {
+        return instance.post('https://neko-back.herokuapp.com/2.0/auth/forgot', { email, message: EMAIL_TEMPLATE })
     }
 
 }
