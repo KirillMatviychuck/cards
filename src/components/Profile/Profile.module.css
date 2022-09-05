@@ -1,0 +1,35 @@
+.profileWrap {
+
+}
+
+.profileWindow {
+    height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #dedede;
+}
+
+.title {
+
+}
+
+.userAvatar {
+    height: 150px;
+    width: 150px;
+    border-radius: 75px;
+}
+
+.userName {
+
+}
+
+.userMail {
+
+}
+
+.logoutBtn {
+
+}
