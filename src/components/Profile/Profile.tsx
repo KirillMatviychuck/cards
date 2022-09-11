@@ -1,11 +1,12 @@
 import React, { ChangeEvent, useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks";
 import { logout } from "../Login/login-reducer";
-import classes from './Profile.module.css'
+import classes from './Profile.module.scss'
 import { Navigate } from "react-router-dom";
 import { PATH } from "../../app/App";
 import defaultPhoto from "../../assets/images/defaultUserPhoto.png"
 import { changeName } from './profile-reducer';
+import {Button, TextField} from "@mui/material";
 
 const Profile = () => {
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
@@ -32,12 +33,12 @@ const Profile = () => {
     return (
         <div className={classes.profileWrap}>
             <div className={classes.profileWindow}>
-                <span className={classes.title}>Personal Information</span>
+                <h2 className={classes.title}>Personal Information</h2>
                 <img className={classes.userAvatar} src={image} alt="user avatar" />
                 {!editMode ? <span onDoubleClick={editModeHandler} className={classes.userName}>{name}</span>
-                    : <input onBlur={editModeHandler} value={nameField} onChange={onChangeHandler} type="text" autoFocus />}
+                    : <TextField variant='standard' onBlur={editModeHandler} value={nameField} onChange={onChangeHandler} autoFocus />}
                 <span className={classes.userMail}>{email}</span>
-                <button className={classes.logoutBtn} onClick={logoutHandler}>Log out</button>
+                <Button variant='contained' onClick={logoutHandler}>Log out</Button>
             </div>
         </div>
     );

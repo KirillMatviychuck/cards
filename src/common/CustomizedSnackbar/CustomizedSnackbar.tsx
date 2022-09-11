@@ -1,9 +1,7 @@
 import {Snackbar} from "@material-ui/core";
 import MuiAlert, {AlertProps} from '@material-ui/lab/Alert';
-import {useSelector} from "react-redux";
-import {errorHandling} from "../../app/app-reducer";
-import {useAppDispatch} from "../../app/hooks/hooks";
-import {RootState} from "../../app/store";
+import {errorHandling, successHandling} from "../../app/app-reducer";
+import {useAppDispatch, useAppSelector} from "../../app/hooks/hooks";
 
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -15,15 +13,28 @@ export default function CustomizedSnackbars() {
         if (reason === 'clickaway') {
             return;
         }
-        dispatch(errorHandling({ error: null }))
+        dispatch(errorHandling({error: null}))
+        dispatch(successHandling({success: null}))
     };
-    let error = useSelector<RootState, string | null>(state => state.app.error)
-    let hasError = error !== null
+    const {error, success} = useAppSelector(state => state.app)
+    const hasError = error !== null
+    const hasSuccess = success !== null
+
+    let valueToShow: string = ''
+
+    if (hasError) {
+        valueToShow = error
+    }
+    if (hasSuccess) {
+        valueToShow = success
+    }
+    const whatToShow = hasSuccess ? "success" : "error"
+
     return (
 
-        <Snackbar open={hasError} autoHideDuration={2000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error">
-                {error}
+        <Snackbar open={hasError || hasSuccess} autoHideDuration={2000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity={whatToShow}>
+                {valueToShow}
             </Alert>
         </Snackbar>
 

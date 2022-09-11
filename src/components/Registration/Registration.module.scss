@@ -1,0 +1,73 @@
+.regWrapper {
+  display: flex;
+  justify-content: center;
+
+  margin: 120px auto;
+  background: #FFFFFF;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+.reg {
+  display: block;
+  min-height: 528px;
+  width: 413px;
+  padding: 35px 33px 42px 33px;
+  background: #fff;
+  box-sizing: border-box;
+}
+.title {
+  text-align: center;
+  color: #000;
+  margin-bottom: 41px;
+}
+
+
+.inputEmail, .inputPass {
+  margin-bottom: 24px;
+}
+
+.inputPassConfirm {
+  margin-bottom: 60px;
+}
+
+.btn {
+  display: block;
+  width: 347px;
+  border-radius: 20px;
+  padding: 8px;
+  border: none;
+  background: #366EFF;
+  color: #fff;
+}
+
+.signIn {
+  margin-top: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signInLink {
+  color: #366EFF;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.signInLink:hover {
+  text-decoration: underline;
+}
+
+.info {
+  display: block;
+  color: #000;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  opacity: .5;
+
+  margin-bottom: 11px;
+}

@@ -1,8 +1,9 @@
 .App {
-  font-family: Montsreat, sans-serif;
-  background-color: #e7e6e6;
+  font-family: 'Roboto', Montsreat, sans-serif;
+  background-color: #fff;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

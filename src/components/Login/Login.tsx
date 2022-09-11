@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Login.module.css'
+import classes from './Login.module.scss'
 import { Navigate, NavLink } from "react-router-dom";
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../app/hooks/hooks";
@@ -17,6 +17,12 @@ const Login = () => {
             rememberMe: false,
         },
         validate(values) {
+            if (!values.email && !values.password) {
+                return {
+                    email: 'Email is required',
+                    password: 'Enter your password'
+                }
+            }
             if (!values.email) {
                 return {
                     email: 'Email is required'
@@ -55,7 +61,7 @@ const Login = () => {
                         {...formik.getFieldProps('email')}
 
                     />
-                    {formik.touched.email && formik.errors.email && <div className={classes.emailError}>Enter your email</div>}
+                    {formik.touched.email && formik.errors.email && <div className={classes.emailError}>Email is required</div>}
                     <label htmlFor="password"
                         className={formik.errors.password && formik.touched.password ? classes.labelError : classes.label}>Password</label>
                     <input
@@ -63,7 +69,7 @@ const Login = () => {
                         type="password"
                         {...formik.getFieldProps('password')}
                     />
-                    {formik.touched.password && formik.errors.password && <div className={classes.emailError}>Enter your password</div>}
+                    {formik.touched.password && formik.errors.password && <div className={classes.emailError}>Password is required</div>}
                     <div className={classes.rememberForgotBlock}>
                         <div className={classes.rememberMeBlock}>
                             <label htmlFor="rememberMe">Remember me</label>

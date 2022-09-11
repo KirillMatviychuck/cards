@@ -5,7 +5,7 @@ import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from '../../app/App';
 import {useAppDispatch, useAppSelector} from '../../app/hooks/hooks';
 import {emailRecover} from './forgot-reducer';
-import classes from './ForgotPassword.module.css'
+import classes from './ForgotPassword.module.scss'
 
 const ForgotPassword = () => {
     const recoveredMail = useAppSelector(state => state.forgot.recoveredMail)

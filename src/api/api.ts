@@ -7,6 +7,10 @@ export const instance = axios.create({
 })
 
 export const authAPI = {
+    userRegistration(email: string, password: string) {
+      return instance.post('auth/register', {email, password})
+          .then(res => res.data)
+    },
     login(data: LoginData) {
         return instance.post<LoginResponse>('auth/login', data)
             .then(res => res.data)
@@ -20,6 +24,10 @@ export const authAPI = {
     },
     forgotPassword(email: string) {
         return instance.post('https://neko-back.herokuapp.com/2.0/auth/forgot', { email, message: EMAIL_TEMPLATE })
+    },
+    setNewPassword(password: string, resetPasswordToken: string | undefined) {
+        return instance.post('auth/set-new-password', {password, resetPasswordToken})
+            .then(res => res.data)
     }
 
 }

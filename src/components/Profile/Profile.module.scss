@@ -1,0 +1,38 @@
+@import "../../common/styles/mixins";
+
+.profileWrap {
+  .profileWindow {
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    @include borderShadows();
+
+    .title {
+      margin: 0;
+      padding: 0;
+    }
+
+    .userAvatar {
+      height: 150px;
+      width: 150px;
+      border-radius: 75px;
+    }
+
+    .userName {
+      font-size: 1.3em;
+    }
+
+    .userMail {
+      font-size: 0.8em;
+      color: #727883;
+    }
+
+
+  }
+}
+
+
