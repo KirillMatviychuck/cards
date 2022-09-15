@@ -7,6 +7,7 @@ import {appReducer} from "./app-reducer";
 import {forgotReducer} from "../components/ForgotPassword/forgot-reducer";
 import {registrationReducer} from "../components/Registration/registration-reducer";
 import {newPasswordReducer} from "../components/SetNewPassword/set-new-password-reducer";
+import {packsReducer} from "../components/Packs/packs-reducer";
 
 const rootReducer = combineReducers({
     login: loginReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     registration: registrationReducer,
     setNewPassword: newPasswordReducer,
     profile: profileReducers,
-    app: appReducer
+    app: appReducer,
+    packs: packsReducer
 })
 
 export const store = configureStore({

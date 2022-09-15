@@ -1,0 +1,44 @@
+.packs {
+  height: 85vh;
+  width: 60%;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+
+  .packsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .headerBtn {
+      color: #fff;
+      background-color: #366EFF;
+      border-radius: 20px;
+    }
+  }
+
+  .mainContentBlock {
+    width: 100%;
+
+    .filtersBlock {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+    }
+
+    .packsTable {
+      margin-top: 10px;
+      width: 100%;
+    }
+  }
+
+  .paginator {
+
+  }
+}

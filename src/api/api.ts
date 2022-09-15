@@ -1,5 +1,6 @@
 import axios from "axios"
 import {EMAIL_TEMPLATE} from "../components/ForgotPassword/recoverMessage";
+import {ChangeNameResponse, GetPacksPayload, GetPacksResponse, LoginData, LoginResponse} from "./api-types";
 
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
@@ -8,8 +9,8 @@ export const instance = axios.create({
 
 export const authAPI = {
     userRegistration(email: string, password: string) {
-      return instance.post('auth/register', {email, password})
-          .then(res => res.data)
+        return instance.post('auth/register', {email, password})
+            .then(res => res.data)
     },
     login(data: LoginData) {
         return instance.post<LoginResponse>('auth/login', data)
@@ -23,47 +24,24 @@ export const authAPI = {
             .then(res => res.data)
     },
     forgotPassword(email: string) {
-        return instance.post('https://neko-back.herokuapp.com/2.0/auth/forgot', { email, message: EMAIL_TEMPLATE })
+        return instance.post('https://neko-back.herokuapp.com/2.0/auth/forgot', {email, message: EMAIL_TEMPLATE})
     },
     setNewPassword(password: string, resetPasswordToken: string | undefined) {
         return instance.post('auth/set-new-password', {password, resetPasswordToken})
             .then(res => res.data)
     }
-
 }
 
 export const profileAPI = {
     setUserName(name: string, avatar: string) {
-        return instance.put<ChangeNameResponse>('auth/me', { name })
+        return instance.put<ChangeNameResponse>('auth/me', {name})
             .then(res => res.data)
     }
 }
 
-type LoginResponse = {
-    _id: string
-    email: string
-    rememberMe: boolean,
-    isAdmin: boolean,
-    name: string
-    verified: boolean
-    publicCardPacksCount: number
-    created: string
-    updated: string
-    __v: number
-    token: string
-    tokenDeathTime: number
-    avatar: null
-}
-
-type LoginData = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
-
-type ChangeNameResponse = {
-    token: string
-    tokenDeathTime: number
-    updatedUser: LoginResponse
+export const cardsAPI = {
+    getPacks(data?: GetPacksPayload) {
+        return instance.get<GetPacksResponse>('cards/pack', {params: {...data, pageCount: 10}})
+    }
 }
 

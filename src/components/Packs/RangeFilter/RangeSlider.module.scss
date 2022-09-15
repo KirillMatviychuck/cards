@@ -1,0 +1,25 @@
+@import "../../../common/variables/mixins";
+
+.rangeSliderWrap {
+  @include alignFlexCenter();
+
+  .rangeValues {
+    width: 30px;
+    margin: 0 20px;
+    padding: 5px;
+    border: 1px solid #b7b7b7;
+    display: flex;
+    @include alignFlexCenter();
+  }
+
+  .slider {
+    width: 150px;
+  }
+
+  .PacksTable {
+
+  }
+  .paginator {
+
+  }
+}

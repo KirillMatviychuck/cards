@@ -1,12 +1,12 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { profileAPI } from "../../api/api";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {profileAPI} from "../../api/api";
 
-export const changeName = createAsyncThunk('profile/changeName', async (arg: { name: string, avatar: string }, { rejectWithValue }) => {
+export const changeName = createAsyncThunk('profile/changeName', async (arg: { name: string, avatar: string }, {rejectWithValue}) => {
     try {
         const response = await profileAPI.setUserName(arg.name, arg.avatar)
-        return { name: response.updatedUser.name }
+        return {name: response.updatedUser.name}
     } catch (error: any) {
-        return rejectWithValue({ error: 'some error' })
+        return rejectWithValue({error: 'some error'})
     }
 
 })
@@ -30,14 +30,13 @@ const profileSlice = createSlice({
         }
     },
     extraReducers: builder => {
-        builder.
-            addCase(changeName.fulfilled, (state, action) => {
-                state.name = action.payload.name
-            })
+        builder.addCase(changeName.fulfilled, (state, action) => {
+            state.name = action.payload.name
+        })
     }
 })
 
-export const { fetchProfileData } = profileSlice.actions
+export const {fetchProfileData} = profileSlice.actions
 
 export const profileReducers = profileSlice.reducer
 
