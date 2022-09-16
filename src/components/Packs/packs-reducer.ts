@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {cardsAPI} from "../../api/api";
 import {GetPacksPayload, SinglePack} from "../../api/api-types";
 
@@ -36,13 +36,18 @@ const initialState: InitialState = {
     maxCardsCount: null,
     minCardsCount: null,
     page: 0,
-    pageCount: 10
+    pageCount: 10,
+    searchField: ''
 }
 
 const packsSlice = createSlice({
     name: 'packs',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        setSearchField(state, action: PayloadAction<{text: string}>) {
+            state.searchField = action.payload.text
+        }
+    },
     extraReducers: builder => {
         builder.
         addCase(getPacks.fulfilled, (state, action) => {
@@ -56,6 +61,7 @@ const packsSlice = createSlice({
     }
 })
 
+export const {setSearchField} = packsSlice.actions
 export const packsReducer = packsSlice.reducer
 
 type InitialState = {
@@ -65,4 +71,5 @@ type InitialState = {
     minCardsCount: number | null
     page: number
     pageCount: number
+    searchField: string
 }

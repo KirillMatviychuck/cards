@@ -10,7 +10,7 @@ import Paginator from "../../common/Paginator/Paginator";
 import {useAppSelector} from "../../app/hooks/hooks";
 
 const Packs = () => {
-    const {page, pageCount, cardPacksTotalCount} = useAppSelector(state => state.packs)
+    const {page, pageCount, cardPacksTotalCount, searchField} = useAppSelector(state => state.packs)
 
     return (
         <div className={classes.packs}>
@@ -30,7 +30,7 @@ const Packs = () => {
                 </div>
             </div>
             <div className={classes.paginator}>
-                <Paginator currentPage={page} pageCount={pageCount} cardPacksTotalCount={cardPacksTotalCount}/>
+                <Paginator currentPage={page} pageCount={pageCount} cardPacksTotalCount={cardPacksTotalCount} searchField={searchField}/>
             </div>
         </div>
     );

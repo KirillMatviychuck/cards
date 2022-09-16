@@ -4,7 +4,7 @@ import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {PATH} from "../../app/App";
 import {useAppSelector} from "../../app/hooks/hooks";
-import defaultPhoto from "../../assets/images/defaultUserPhoto.png"
+import defaultPhoto from "../../assets/images/defaultUserPhoto.jpg"
 
 
 const Header = () => {
