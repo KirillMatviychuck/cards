@@ -41,7 +41,7 @@ export const profileAPI = {
 
 export const cardsAPI = {
     getPacks(data?: GetPacksPayload) {
-        return instance.get<GetPacksResponse>('cards/pack', {params: {...data, pageCount: 10}})
+        return instance.get<GetPacksResponse>('cards/pack', {params: {...data}})
     }
 }
 

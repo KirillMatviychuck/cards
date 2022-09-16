@@ -19,7 +19,7 @@ export default function PacksTable() {
         return pack.created.slice(0, index)
     }
     useEffect(() => {
-        dispatch(getPacks({}))
+        dispatch(getPacks({pageCount: 10}))
     }, [])
     return (
         <TableContainer component={Paper}>

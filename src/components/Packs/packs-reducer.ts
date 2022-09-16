@@ -1,16 +1,15 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {cardsAPI} from "../../api/api";
 import {GetPacksPayload, SinglePack} from "../../api/api-types";
 
-export const getPacks = createAsyncThunk('packs/getPacks', async (arg: {payload?: GetPacksPayload}, {rejectWithValue}) => {
+export const getPacks = createAsyncThunk('packs/getPacks', async (arg: GetPacksPayload, {rejectWithValue}) => {
     try {
-        const res = await cardsAPI.getPacks()
+        const res = await cardsAPI.getPacks(arg)
         return {...res.data}
     } catch (e) {
         return rejectWithValue({error: 'something went wrong'})
     }
 })
-
 
 const initialState: InitialState = {
     cardPacks: [
@@ -33,7 +32,7 @@ const initialState: InitialState = {
             _id: ''
         },
     ],
-    cardPacksTotalCount: 100,
+    cardPacksTotalCount: 10,
     maxCardsCount: null,
     minCardsCount: null,
     page: 0,
@@ -43,28 +42,20 @@ const initialState: InitialState = {
 const packsSlice = createSlice({
     name: 'packs',
     initialState: initialState,
-    reducers: {
-        setCurrentPage(state, action: PayloadAction<{currentPage: number}>) {
-            state.page = action.payload.currentPage
-        },
-        setPageCount(state, action: PayloadAction<{pageCount: number}>) {
-            state.pageCount = action.payload.pageCount
-        }
-    },
+    reducers: {},
     extraReducers: builder => {
         builder.
         addCase(getPacks.fulfilled, (state, action) => {
             state.cardPacks = action.payload.cardPacks
             state.cardPacksTotalCount = action.payload.cardPacksTotalCount
-            state.page = action.payload.page
             state.pageCount = action.payload.pageCount
+            state.page = action.payload.page
             state.maxCardsCount = action.payload.maxCardsCount
             state.minCardsCount = action.payload.minCardsCount
         })
     }
 })
 
-export const {setCurrentPage, setPageCount} = packsSlice.actions
 export const packsReducer = packsSlice.reducer
 
 type InitialState = {

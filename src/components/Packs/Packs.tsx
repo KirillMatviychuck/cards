@@ -6,9 +6,11 @@ import SearchField from "./SearchField/SearchField";
 import RangeSlider from "./RangeFilter/RangeFilter";
 import PacksTable from "./PacksTable/PacksTable";
 import {FilterListOutlined} from "@material-ui/icons";
-import Pagination from "../../common/Paginator/Pagination";
+import Paginator from "../../common/Paginator/Paginator";
+import {useAppSelector} from "../../app/hooks/hooks";
 
 const Packs = () => {
+    const {page, pageCount, cardPacksTotalCount} = useAppSelector(state => state.packs)
 
     return (
         <div className={classes.packs}>
@@ -28,7 +30,7 @@ const Packs = () => {
                 </div>
             </div>
             <div className={classes.paginator}>
-                <Pagination />
+                <Paginator currentPage={page} pageCount={pageCount} cardPacksTotalCount={cardPacksTotalCount}/>
             </div>
         </div>
     );

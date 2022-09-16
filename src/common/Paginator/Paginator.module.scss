@@ -1,0 +1,18 @@
+.paginationWrap {
+  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 620px;
+  .selectBlock {
+    .selectText {
+      display: inline-block;
+    }
+
+    .nativeSelect {
+      margin: 0 10px;
+      height: 30px;
+      width: 45px;
+    }
+  }
+}
