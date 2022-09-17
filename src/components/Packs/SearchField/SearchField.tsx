@@ -11,7 +11,7 @@ import {useDebounce} from "../../../common/hooks/useDebouncer/useDebouncer";
 
 const SearchField = () => {
     const dispatch = useAppDispatch()
-    const {searchField, page, pageCount} = useAppSelector(state => state.packs)
+    const {searchField, pageCount} = useAppSelector(state => state.packs)
     const [value, setValue] = useState<string>(searchField)
     const debouncedValue = useDebounce<string>(value, 500)
 

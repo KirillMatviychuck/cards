@@ -4,6 +4,7 @@ import {GetPacksPayload, SinglePack} from "../../api/api-types";
 
 export const getPacks = createAsyncThunk('packs/getPacks', async (arg: GetPacksPayload, {rejectWithValue}) => {
     try {
+        debugger
         const res = await cardsAPI.getPacks(arg)
         return {...res.data}
     } catch (e) {
@@ -33,10 +34,11 @@ const initialState: InitialState = {
         },
     ],
     cardPacksTotalCount: 10,
-    maxCardsCount: null,
-    minCardsCount: null,
+    maxCardsCount: 0,
+    minCardsCount: 20,
     page: 0,
     pageCount: 10,
+    onlyMyPacks: false,
     searchField: ''
 }
 
@@ -46,6 +48,9 @@ const packsSlice = createSlice({
     reducers: {
         setSearchField(state, action: PayloadAction<{text: string}>) {
             state.searchField = action.payload.text
+        },
+        setButtonFilter(state, action: PayloadAction<{value: boolean}>) {
+            state.onlyMyPacks = action.payload.value
         }
     },
     extraReducers: builder => {
@@ -61,15 +66,16 @@ const packsSlice = createSlice({
     }
 })
 
-export const {setSearchField} = packsSlice.actions
+export const {setSearchField, setButtonFilter} = packsSlice.actions
 export const packsReducer = packsSlice.reducer
 
 type InitialState = {
     cardPacks: SinglePack[]
     cardPacksTotalCount: number
-    maxCardsCount: number | null
-    minCardsCount: number | null
+    maxCardsCount: number
+    minCardsCount: number
     page: number
     pageCount: number
+    onlyMyPacks: boolean
     searchField: string
 }
