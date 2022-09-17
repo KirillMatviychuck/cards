@@ -1,6 +1,13 @@
 import axios from "axios"
 import {EMAIL_TEMPLATE} from "../components/ForgotPassword/recoverMessage";
-import {ChangeNameResponse, GetPacksPayload, GetPacksResponse, LoginData, LoginResponse} from "./api-types";
+import {
+    ChangeNameResponse,
+    CreatePackPayload, CreatePackResponse,
+    GetPacksPayload,
+    GetPacksResponse,
+    LoginData,
+    LoginResponse
+} from "./api-types";
 
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
@@ -39,9 +46,12 @@ export const profileAPI = {
     }
 }
 
-export const cardsAPI = {
+export const packsAPI = {
     getPacks(data?: GetPacksPayload) {
         return instance.get<GetPacksResponse>('cards/pack', {params: {...data}})
+    },
+    createNewPack(data: CreatePackPayload) {
+        return instance.post<CreatePackResponse>('cards/pack',{cardsPack: data})
     }
 }
 

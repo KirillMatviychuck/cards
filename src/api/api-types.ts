@@ -50,6 +50,20 @@ export type GetPacksResponse = {
     tokenDeathTime: number
 }
 
+export type CreatePackPayload = {
+    name: string
+    deckCover?: string
+    private?: boolean
+}
+
+export type CreatePackResponse = {
+    newCardsPack: ReturnedPack
+    token: string
+    tokenDeathTime: number
+}
+
+export type ReturnedPack = Omit<SinglePack, "deckCover">
+
 export type SinglePack = {
     cardsCount: number
     created: string
@@ -68,3 +82,4 @@ export type SinglePack = {
     __v: number
     _id: string
 }
+

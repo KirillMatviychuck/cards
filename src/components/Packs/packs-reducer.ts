@@ -1,11 +1,18 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {cardsAPI} from "../../api/api";
-import {GetPacksPayload, SinglePack} from "../../api/api-types";
+import {packsAPI} from "../../api/api";
+import {CreatePackPayload, GetPacksPayload, SinglePack} from "../../api/api-types";
 
 export const getPacks = createAsyncThunk('packs/getPacks', async (arg: GetPacksPayload, {rejectWithValue}) => {
     try {
-        debugger
-        const res = await cardsAPI.getPacks(arg)
+        const res = await packsAPI.getPacks(arg)
+        return {...res.data}
+    } catch (e) {
+        return rejectWithValue({error: 'something went wrong'})
+    }
+})
+export const addNewPack = createAsyncThunk('packs/addNewPack', async (arg: CreatePackPayload, {rejectWithValue}) => {
+    try {
+        const res = await packsAPI.createNewPack(arg)
         return {...res.data}
     } catch (e) {
         return rejectWithValue({error: 'something went wrong'})
@@ -63,6 +70,9 @@ const packsSlice = createSlice({
             state.maxCardsCount = action.payload.maxCardsCount
             state.minCardsCount = action.payload.minCardsCount
         })
+            .addCase(addNewPack.fulfilled, (state, action) => {
+                state.cardPacks.unshift({...action.payload.newCardsPack, deckCover: ''})
+            })
     }
 })
 
