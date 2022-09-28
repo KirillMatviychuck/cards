@@ -19,6 +19,15 @@ export const addNewPack = createAsyncThunk('packs/addNewPack', async (arg: Creat
     }
 })
 
+export const deletePack = createAsyncThunk('packs/deletePack', async (packId: string, {rejectWithValue}) => {
+    try {
+        const res = await packsAPI.deletePack(packId)
+        return {...res.data}
+    } catch (e) {
+        return rejectWithValue({error: 'something went wrong'})
+    }
+})
+
 const initialState: InitialState = {
     cardPacks: [
         {
@@ -53,16 +62,15 @@ const packsSlice = createSlice({
     name: 'packs',
     initialState: initialState,
     reducers: {
-        setSearchField(state, action: PayloadAction<{text: string}>) {
+        setSearchField(state, action: PayloadAction<{ text: string }>) {
             state.searchField = action.payload.text
         },
-        setButtonFilter(state, action: PayloadAction<{value: boolean}>) {
+        setButtonFilter(state, action: PayloadAction<{ value: boolean }>) {
             state.onlyMyPacks = action.payload.value
         }
     },
     extraReducers: builder => {
-        builder.
-        addCase(getPacks.fulfilled, (state, action) => {
+        builder.addCase(getPacks.fulfilled, (state, action) => {
             state.cardPacks = action.payload.cardPacks
             state.cardPacksTotalCount = action.payload.cardPacksTotalCount
             state.pageCount = action.payload.pageCount
@@ -72,6 +80,13 @@ const packsSlice = createSlice({
         })
             .addCase(addNewPack.fulfilled, (state, action) => {
                 state.cardPacks.unshift({...action.payload.newCardsPack, deckCover: ''})
+            })
+            .addCase(deletePack.fulfilled, (state, action) => {
+                state.cardPacks.forEach((pack, index) => {
+                    if (pack._id === action.payload.deletedCardsPack._id) {
+                        state.cardPacks.splice(index, 1)
+                    }
+                })
             })
     }
 })

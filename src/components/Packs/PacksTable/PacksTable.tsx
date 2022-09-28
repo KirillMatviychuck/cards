@@ -10,6 +10,7 @@ import classes from './PacksTable.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../app/hooks/hooks";
 import {getPacks} from "../packs-reducer";
 import {SinglePack} from "../../../api/api-types";
+import EditButtons from "../EditButtons/EditButtons";
 
 export default function PacksTable() {
     const dispatch = useAppDispatch()
@@ -43,7 +44,9 @@ export default function PacksTable() {
                             <TableCell align="right">{pack.cardsCount}</TableCell>
                             <TableCell align="right">{correctDate}</TableCell>
                             <TableCell align="right">{pack.user_name}</TableCell>
-                            <TableCell align="right">SIGN</TableCell>
+                            <TableCell align="right">
+                                <EditButtons packId={pack._id}/>
+                            </TableCell>
                         </TableRow>
                     })}
                 </TableBody>

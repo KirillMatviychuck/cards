@@ -1,0 +1,10 @@
+.editButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .btn {
+    height: 17px;
+    width: 17px;
+  }
+}

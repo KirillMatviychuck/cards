@@ -82,4 +82,3 @@ export type SinglePack = {
     __v: number
     _id: string
 }
-

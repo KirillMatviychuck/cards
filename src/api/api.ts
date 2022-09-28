@@ -52,6 +52,12 @@ export const packsAPI = {
     },
     createNewPack(data: CreatePackPayload) {
         return instance.post<CreatePackResponse>('cards/pack',{cardsPack: data})
+    },
+    deletePack(packId: string) {
+        return instance.delete(`cards/pack?id=${packId}`)
+            .then(res => {
+                return res
+            })
     }
 }
 
