@@ -9,10 +9,12 @@ const EditButtons: React.FC<PropsType> = ({packId}) => {
     const onDeleteClickHandler = (id: string) => dispatch(deletePack(id))
 
     return (
-        <div className={classes.editButtons}>
-            <SchoolOutlined className={classes.btn}/>
-            <EditOutlined className={classes.btn}/>
-            <DeleteOutline onClick={() => onDeleteClickHandler(packId)} className={classes.btn}/>
+        <div className={classes.editButtonsWrapper}>
+            <div className={classes.editButtons}>
+                <SchoolOutlined className={classes.btn}/>
+                <EditOutlined className={classes.btn}/>
+                <DeleteOutline onClick={() => onDeleteClickHandler(packId)} className={classes.btn}/>
+            </div>
         </div>
     );
 };

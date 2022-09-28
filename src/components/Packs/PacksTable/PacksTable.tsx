@@ -15,6 +15,7 @@ import EditButtons from "../EditButtons/EditButtons";
 export default function PacksTable() {
     const dispatch = useAppDispatch()
     const {cardPacks} = useAppSelector(state => state.packs)
+    const {_id: myId} = useAppSelector(state => state.profile)
     function fixDate(pack: SinglePack) {
         const index = pack.created.indexOf('T')
         return pack.created.slice(0, index)
@@ -44,8 +45,8 @@ export default function PacksTable() {
                             <TableCell align="right">{pack.cardsCount}</TableCell>
                             <TableCell align="right">{correctDate}</TableCell>
                             <TableCell align="right">{pack.user_name}</TableCell>
-                            <TableCell align="right">
-                                <EditButtons packId={pack._id}/>
+                            <TableCell align="right" className={classes.editButtonsBlock}>
+                                {pack.user_id === myId && <EditButtons packId={pack._id}/>}
                             </TableCell>
                         </TableRow>
                     })}
