@@ -28,6 +28,15 @@ export const deletePack = createAsyncThunk('packs/deletePack', async (packId: st
     }
 })
 
+export const changePackName = createAsyncThunk('packs/editPack', async (arg: { id: string, name: string }, {rejectWithValue}) => {
+    try {
+        await packsAPI.editPackName(arg.id, arg.name)
+        return {id: arg.id, name: arg.name}
+    } catch (e) {
+        return rejectWithValue({error: 'something went wrong'})
+    }
+})
+
 const initialState: InitialState = {
     cardPacks: [
         {
@@ -87,6 +96,11 @@ const packsSlice = createSlice({
                         state.cardPacks.splice(index, 1)
                     }
                 })
+            })
+            .addCase(changePackName.fulfilled, (state, action) => {
+                const packToChange = state.cardPacks.find(pack => pack._id === action.payload.id)
+                debugger
+                if (packToChange) packToChange.name = action.payload.name
             })
     }
 })

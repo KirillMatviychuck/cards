@@ -18,7 +18,7 @@ export enum PATH {
     LOGIN = '/login',
     PROFILE = '/profile',
     PACKS = '/packs',
-    CARDS = '/cars',
+    CARDS = '/cards',
     FORGOT = '/forgot-password',
     REGISTRATION = '/signup',
     SUCCESSFUL_RECOVERY = '/successful-recovery',
