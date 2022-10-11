@@ -4,7 +4,16 @@ import classes from './EditButtons.module.scss'
 import {deletePack} from "../packs-reducer";
 import {useAppDispatch} from "../../../app/hooks/hooks";
 
-const EditButtons: React.FC<PropsType> = ({packId, packName, setPackName, setEditMode, setSavedId, editModeValue}) => {
+const EditButtons: React.FC<PropsType> = ({
+                                              packId,
+                                              userId,
+                                              myId,
+                                              packName,
+                                              setPackName,
+                                              setEditMode,
+                                              setSavedId,
+                                              editModeValue
+                                          }) => {
     const dispatch = useAppDispatch()
     const onDeleteClickHandler = (id: string) => dispatch(deletePack(id))
     const onEditButtonClickHandler = () => {
@@ -17,8 +26,10 @@ const EditButtons: React.FC<PropsType> = ({packId, packName, setPackName, setEdi
         <div className={classes.editButtonsWrapper}>
             <div className={classes.editButtons}>
                 <SchoolOutlined className={classes.btn}/>
-                <EditOutlined onClick={onEditButtonClickHandler} className={classes.btn}/>
-                <DeleteOutline onClick={() => onDeleteClickHandler(packId)} className={classes.btn}/>
+                {userId === myId &&
+                    <EditOutlined onClick={onEditButtonClickHandler} className={classes.btn}/>}
+                {userId === myId &&
+                    <DeleteOutline onClick={() => onDeleteClickHandler(packId)} className={classes.btn}/>}
             </div>
         </div>
     );
@@ -26,6 +37,8 @@ const EditButtons: React.FC<PropsType> = ({packId, packName, setPackName, setEdi
 
 type PropsType = {
     packId: string
+    userId: string
+    myId: string
     packName: string
     setEditMode: Dispatch<SetStateAction<boolean>>
     setSavedId: Dispatch<SetStateAction<string>>

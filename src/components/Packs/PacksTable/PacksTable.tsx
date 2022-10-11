@@ -67,14 +67,15 @@ export default function PacksTable() {
                             <TableCell align="right">{fixDate(pack)}</TableCell>
                             <TableCell align="right">{pack.user_name}</TableCell>
                             <TableCell align="right" className={classes.editButtonsBlock}>
-                                {pack.user_id === myId
-                                    && <EditButtons
-                                        packId={pack._id}
-                                        packName={pack.name}
-                                        setEditMode={setEditMode}
-                                        editModeValue={editMode}
-                                        setSavedId={setSavedId}
-                                        setPackName={setPackName}/>}
+                                <EditButtons
+                                    packId={pack._id}
+                                    userId={pack.user_id}
+                                    myId={myId}
+                                    packName={pack.name}
+                                    setEditMode={setEditMode}
+                                    editModeValue={editMode}
+                                    setSavedId={setSavedId}
+                                    setPackName={setPackName}/>
                             </TableCell>
                         </TableRow>
                     })}
