@@ -21,11 +21,14 @@ const EditButtons: React.FC<PropsType> = ({
         setEditMode(!editModeValue)
         setPackName(packName)
     }
+    const openPackCardsHandler = () => {
+
+    }
 
     return (
         <div className={classes.editButtonsWrapper}>
             <div className={classes.editButtons}>
-                <SchoolOutlined className={classes.btn}/>
+                <SchoolOutlined onClick={openPackCardsHandler} className={classes.btn}/>
                 {userId === myId &&
                     <EditOutlined onClick={onEditButtonClickHandler} className={classes.btn}/>}
                 {userId === myId &&
